@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: ติดตั้ง Node.js (ตัวอย่าง)
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: ติดตั้ง dependencies
+        run: npm install
+
+      - name: รันเทสต์
+        run: npm test
+
+      - name: สร้างโปรเจกต์
+        run: npm run build
